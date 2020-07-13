@@ -18,7 +18,7 @@ public class Browser {
     private static final int TIMEOUT = Integer.parseInt(PropertiesRead.read("implicitlyTimeout", PathsConstants.FRAMEWORK_PROPERTY));
     private static final int EXPLICIT_TIMEOUT = Integer.parseInt(PropertiesRead.read("explicitTimeout", PathsConstants.FRAMEWORK_PROPERTY));
     private static WebDriver driver;
-    private static final Logger log = Logger.getLogger(Browser.class);
+    private static final Logger LOG = Logger.getLogger(Browser.class);
 
     public static WebDriver getBrowser() {
         if (driver == null) {
@@ -26,23 +26,29 @@ public class Browser {
         }
         return driver;
     }
-    public static void setWaitUntilClickable(By by) {
-        log.info("Timeout is " + EXPLICIT_TIMEOUT);
-        (new WebDriverWait(getBrowser(), EXPLICIT_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(by));
+
+    public static void setWaitUntilPresence(BaseElement element) {
+        LOG.info("Timeout is " + EXPLICIT_TIMEOUT);
+        (new WebDriverWait(getBrowser(), EXPLICIT_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(element.getElementLocator()));
     }
 
-    public static void setWaitUntilInvisible(By by) {
-        log.info("Timeout is " + EXPLICIT_TIMEOUT);
-        (new WebDriverWait(getBrowser(), EXPLICIT_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(by));
+    public static void setWaitUntilClickable(BaseElement element) {
+        LOG.info("Timeout is " + EXPLICIT_TIMEOUT);
+        (new WebDriverWait(getBrowser(), EXPLICIT_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(element.getElementLocator()));
+    }
+
+    public static void setWaitUntilInvisible(BaseElement element) {
+        LOG.info("Timeout is " + EXPLICIT_TIMEOUT);
+        (new WebDriverWait(getBrowser(), EXPLICIT_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(element.getElementLocator()));
     }
 
     public static String getCurrentUrl() {
-        log.info("Getting current Url");
+        LOG.info("Getting current Url");
         return getBrowser().getCurrentUrl();
     }
 
     public static void addCookie(Cookie cookie) {
-        log.info("adding " + cookie.getName() + " data");
+        LOG.info("adding " + cookie.getName() + " data");
         getBrowser().manage().addCookie(cookie);
     }
 
@@ -54,8 +60,8 @@ public class Browser {
         getBrowser().navigate().refresh();
     }
 
-    public static String getAttribute(By by, String attribute) {
-        return getBrowser().findElement(by).getAttribute(attribute);
+    public static String getAttribute(BaseElement element, String attribute) {
+        return getBrowser().findElement(element.getElementLocator()).getAttribute(attribute);
     }
 
     public static void back() {
@@ -82,15 +88,10 @@ public class Browser {
         getBrowser().manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
     }
 
-    public static void setExplicitWaitUntilPresence(BaseElement element) {
-        log.info("Timeout is " + EXPLICIT_TIMEOUT);
-        (new WebDriverWait(getBrowser(), EXPLICIT_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(element.getElementLocator()));
-    }
-
     public static void takeScreenshot(String path) {
-        log.info("Taking screenshot");
+        LOG.info("Taking screenshot");
         TakesScreenshot screenshot = ((TakesScreenshot) getBrowser());
-        log.info("Inserting image into the file PNG");
+        LOG.info("Inserting image into the file PNG");
         File image = screenshot.getScreenshotAs(OutputType.FILE);
         File destFile = new File(path);
         try {

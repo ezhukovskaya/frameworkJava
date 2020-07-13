@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.util.Map;
 
 public class CloudinaryUtils {
-    private static final Logger log = Logger.getLogger(CloudinaryUtils.class);
+    private static final Logger LOG = Logger.getLogger(CloudinaryUtils.class);
 
     public static Map upload(File file) {
         try {
-            log.info(String.format("Uploading %s", file.getName()));
+            LOG.info(String.format("Uploading %s", file.getName()));
             return new Cloudinary(CloudinaryValues.CLOUDINARY_URL).uploader().upload(file, ObjectUtils.emptyMap());
         } catch (IOException e) {
             e.printStackTrace();

@@ -12,18 +12,13 @@ import java.util.List;
 @Data
 public abstract class BaseElement {
 
-    private static final Logger log = Logger.getLogger(BaseElement.class);
+    private static final Logger LOG = Logger.getLogger(BaseElement.class);
     protected By elementLocator;
     protected String elementName;
 
     public BaseElement(By locator, String name) {
         this.elementLocator = locator;
         this.elementName = name;
-    }
-
-    public void click() {
-        log.info(this.elementName + " click");
-        getElement().click();
     }
 
     public void submit(){
@@ -39,7 +34,7 @@ public abstract class BaseElement {
     }
 
     public String getText() {
-        log.info("Get text from element");
+        LOG.info("Get text from element");
         return getElement().getText();
     }
 

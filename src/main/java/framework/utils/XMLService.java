@@ -1,6 +1,6 @@
 package framework.utils;
 
-import application.constants.XMLTags;
+import application.constants.XMLTagsConstants;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -9,14 +9,14 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 
 public class XMLService {
-    private static final Logger log = Logger.getLogger(XMLService.class);
+    private static final Logger LOG = Logger.getLogger(XMLService.class);
 
     private static String fixXML(HttpResponse response) {
         try {
             String buffer = EntityUtils.toString(response.getEntity());
-            return XMLTags.TEST_GROUP + buffer + XMLTags.CLOSED_TEST_GROUP;
+            return XMLTagsConstants.TEST_GROUP + buffer + XMLTagsConstants.CLOSED_TEST_GROUP;
         } catch (IOException e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
         return null;
     }
@@ -25,11 +25,11 @@ public class XMLService {
         XmlMapper xmlMapper = new XmlMapper();
         String fixedXML = fixXML(response);
         try {
-            log.info("read XML objects");
+            LOG.info("read XML objects");
             System.out.println(EntityUtils.toString(response.getEntity()));
             return xmlMapper.readValue(fixedXML, clazz);
         } catch (IOException e) {
-            log.error("reading values error");
+            LOG.error("reading values error");
             e.printStackTrace();
         }
         return null;

@@ -1,6 +1,5 @@
 package framework.utils;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class PropertiesRead {
-    private static Properties prop = new Properties();
+    private static final Properties prop = new Properties();
 
     public static String read(String key, String path) {
         try {
