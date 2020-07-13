@@ -11,11 +11,13 @@ public class PropertiesRead {
     private static final Properties prop = new Properties();
 
     public static String read(String key, String path) {
-        try {
-            InputStream input = new FileInputStream(path);
-            prop.load(new InputStreamReader(input, StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.getMessage();
+        if (prop.getProperty(key) == null) {
+            try {
+                InputStream input = new FileInputStream(path);
+                prop.load(new InputStreamReader(input, StandardCharsets.UTF_8));
+            } catch (IOException e) {
+                e.getMessage();
+            }
         }
         return prop.getProperty(key);
     }
