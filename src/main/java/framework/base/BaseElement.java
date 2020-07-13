@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -29,8 +30,16 @@ public abstract class BaseElement {
         return Browser.getBrowser().findElement(elementLocator);
     }
 
-    private List<WebElement> getElements() {
+    public List<WebElement> getElements() {
         return Browser.getBrowser().findElements(this.elementLocator);
+    }
+
+    public List<String> getElementsAsString(){
+        List <String> text = new ArrayList<>();
+        for(WebElement element: getElements()){
+            text.add(element.getText());
+        }
+        return text;
     }
 
     public String getText() {
