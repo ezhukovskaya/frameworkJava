@@ -14,7 +14,8 @@ import org.junit.runner.RunWith;
         tags = {"@SmokeTest"},
         plugin = {"pretty", "html:target/SystemTestReports/html",
         "json:target/SystemTestReports/json/report.json",
-        "junit:target/SystemTestReports/junit/report.xml"}
+        "junit:target/SystemTestReports/junit/report.xml"},
+        monochrome = true
 )
 public class TemplateTest {
 
