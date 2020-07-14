@@ -12,7 +12,9 @@ import org.junit.runner.RunWith;
             FeatureLocationConstants.HOOKS_PACKAGE_NAME
         },
         tags = {"@SmokeTest"},
-        plugin = {"pretty"}
+        plugin = {"pretty", "html:target/SystemTestReports/html",
+        "json:target/SystemTestReports/json/report.json",
+        "junit:target/SystemTestReports/junit/report.xml"}
 )
 public class TemplateTest {
 
