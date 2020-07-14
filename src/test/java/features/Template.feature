@@ -19,6 +19,6 @@ Feature: Template Menu
 
   @NightlyBuildTest @RegularTest
   Scenario: Add the third menu item
-    Given I have a menu item with name "Cucumber" and price 20
+    Given I have a menu item with name "Cucumber Sandwich" and price 20
     When I add that menu item
-    Then Menu item with name "Cucumber" should be added
+    Then I should see error message with "Duplicate Item"

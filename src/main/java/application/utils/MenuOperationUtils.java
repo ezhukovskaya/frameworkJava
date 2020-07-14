@@ -1,5 +1,6 @@
 package application.utils;
 
+import application.constants.StringConstants;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ public class MenuOperationUtils {
 
     public static void addItem(){
         if(isItemExists(name)){
-            throw new IllegalArgumentException("Duplicate Item");
+            throw new IllegalArgumentException(StringConstants.DUPLICATE_ITEM);
         }
         menuItems.put(name,price);
     }
