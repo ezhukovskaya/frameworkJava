@@ -8,7 +8,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {FeatureLocationConstants.TEMPLATE_PATH},
-        glue = {FeatureLocationConstants.STEPS_DEFINITION_PACKAGE_NAME},
+        glue = {FeatureLocationConstants.STEPS_DEFINITION_PACKAGE_NAME,
+            FeatureLocationConstants.HOOKS_PACKAGE_NAME
+        },
         tags = {"@SmokeTest"},
         plugin = {"pretty"}
 )
