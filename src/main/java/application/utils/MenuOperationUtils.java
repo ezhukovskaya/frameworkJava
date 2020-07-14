@@ -11,6 +11,9 @@ public class MenuOperationUtils {
     @Getter @Setter private static int price;
 
     public static void addItem(){
+        if(isItemExists(name)){
+            throw new IllegalArgumentException("Duplicate Item");
+        }
         menuItems.put(name,price);
     }
 
