@@ -11,8 +11,8 @@ import java.util.List;
 public class DataTablesSteps {
     @Given("^I placed an order for the following items$")
     public void iPlacedAnOrderForTheFollowingItems(DataTable dataTable) throws Throwable {
-        List<String> billData = dataTable.asList(String.class);
-        billData.forEach(System.out::println);
+        List<List<String>> billData = dataTable.asLists(String.class);
+        billData.forEach(data->data.forEach(System.out::println));
     }
 
     @When("^I generate the bill$")
