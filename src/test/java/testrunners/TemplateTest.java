@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         glue = {FeatureLocationConstants.STEPS_DEFINITION_PACKAGE_NAME,
             FeatureLocationConstants.HOOKS_PACKAGE_NAME
         },
-        tags = {"@ListOfMaps"},
+        tags = {"@ScenarioOutlineExample"},
         plugin = {"pretty", "html:target/SystemTestReports/html",
         "json:target/SystemTestReports/json/report.json",
         "junit:target/SystemTestReports/junit/report.xml"},
